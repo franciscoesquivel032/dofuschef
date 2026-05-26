@@ -1,13 +1,18 @@
 package com.franciscoesquivel.dofuschef;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
+@Entity
 public class EffectType {
+    @Id
     @EqualsAndHashCode.Include
     private int id;
     private String name;

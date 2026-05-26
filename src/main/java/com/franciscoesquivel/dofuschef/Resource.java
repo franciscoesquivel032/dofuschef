@@ -21,9 +21,12 @@ public class Resource {
     private TranslatedID translatedID;
     private int level;
     private int pods;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
     private HashSet<ImageUrls> images;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id")
     private ArrayList<Effect> effects;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id")
     private ArrayList<ConditionNode> conditions;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id")
     private ArrayList<Recipe> recipe;
 }

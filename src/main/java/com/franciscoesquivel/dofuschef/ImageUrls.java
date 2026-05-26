@@ -1,12 +1,20 @@
 package com.franciscoesquivel.dofuschef;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@Entity
 public class ImageUrls {
+    @Id
+    @Generated
+    private int id;
     private String icon;
     private String sd;
     private String hq;
