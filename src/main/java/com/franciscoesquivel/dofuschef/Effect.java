@@ -9,7 +9,6 @@ import lombok.*;
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 @Entity
 public class Effect {

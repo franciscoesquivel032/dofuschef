@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
+@Builder
 @Entity
 public class ImageUrls {
     @Id

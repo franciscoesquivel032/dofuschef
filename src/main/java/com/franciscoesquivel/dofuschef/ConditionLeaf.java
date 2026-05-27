@@ -13,7 +13,6 @@ import java.util.Objects;
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString
 @Entity
 public class ConditionLeaf {
