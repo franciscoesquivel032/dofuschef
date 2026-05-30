@@ -1,12 +1,12 @@
-package com.franciscoesquivel.dofuschef;
+package com.franciscoesquivel.dofuschef.Resources;
 
 import com.dofusdude.client.model.Images;
 import com.dofusdude.client.model.ListItem;
+import com.franciscoesquivel.dofuschef.IMapListItem;
+import com.franciscoesquivel.dofuschef.ImageUrls;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-
-import java.awt.*;
 
 @Data
 @AllArgsConstructor
@@ -14,7 +14,7 @@ import java.awt.*;
 @NoArgsConstructor
 @Builder
 @ToString
-public class Resource implements IMapListItem<Resource>{
+public class Resource implements IMapListItem<Resource> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
@@ -26,11 +26,11 @@ public class Resource implements IMapListItem<Resource>{
     private String description;
     private int level;
     private int pods;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+    @OneToOne
     private ImageUrls images;
 
     @Override
-    public Resource mapListItem(ListItem item) {
+    public Resource mapListItem(ListItem item) throws IllegalArgumentException{
         if (item == null) throw new IllegalArgumentException();
         if (item.getAnkamaId() == null) throw new IllegalArgumentException();
         Images imgs = item.getImageUrls() != null ? item.getImageUrls() : new Images();
