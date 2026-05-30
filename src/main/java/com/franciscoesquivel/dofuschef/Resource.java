@@ -2,9 +2,7 @@ package com.franciscoesquivel.dofuschef;
 
 import com.dofusdude.client.model.Images;
 import com.dofusdude.client.model.ListItem;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -18,7 +16,7 @@ import java.awt.*;
 @ToString
 public class Resource implements IMapListItem<Resource>{
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private int id;
     @NotNull

@@ -1,8 +1,6 @@
 package com.franciscoesquivel.dofuschef;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -16,7 +14,7 @@ import java.util.Objects;
 @Entity
 public class ConditionNode {
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @OneToOne
     private ConditionRelation conditionRelation;

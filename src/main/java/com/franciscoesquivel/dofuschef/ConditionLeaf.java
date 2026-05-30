@@ -1,8 +1,6 @@
 package com.franciscoesquivel.dofuschef;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -17,7 +15,7 @@ import java.util.Objects;
 @Entity
 public class ConditionLeaf {
     @NotNull
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
     private boolean isOperand;

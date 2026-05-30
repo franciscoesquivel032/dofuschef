@@ -1,8 +1,6 @@
 package com.franciscoesquivel.dofuschef;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -13,7 +11,7 @@ import lombok.*;
 @Entity
 public class Effect {
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int intMinimum;
     private int intMaximum;

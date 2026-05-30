@@ -1,6 +1,8 @@
 package com.franciscoesquivel.dofuschef;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -19,7 +21,7 @@ public class Recipe {
     @EqualsAndHashCode.Include
     private int itemAnkamaId;
     @NotNull
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
     private String itemSubtype;

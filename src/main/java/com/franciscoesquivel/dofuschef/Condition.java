@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Condition {
     @NotNull
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String operator;
     private int intValue;
