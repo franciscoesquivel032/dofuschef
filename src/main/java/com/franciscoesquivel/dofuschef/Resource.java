@@ -3,18 +3,12 @@ package com.franciscoesquivel.dofuschef;
 import com.dofusdude.client.model.Images;
 import com.dofusdude.client.model.ListItem;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
-
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
-
-@Slf4j
 @Data
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -22,6 +16,11 @@ import java.util.Set;
 @Builder
 @ToString
 public class Resource {
+    @Id
+    @Generated
+    @EqualsAndHashCode.Include
+    private int id;
+    @NotNull
     @EqualsAndHashCode.Include
     private int ankamaId;
     private String name;
