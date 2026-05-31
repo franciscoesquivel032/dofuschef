@@ -13,7 +13,7 @@ public class ResourceService {
     public boolean insert(Resource r) throws IllegalArgumentException {
         boolean insert = false;
         if (r == null) throw new IllegalArgumentException("Resource cannot be null");
-        if(this.dao.findById(r.getId()).isEmpty()){
+        if(this.dao.findByAnkamaId(r.getAnkamaId()).isEmpty()){
             this.dao.save(r);
             insert = true;
         } else throw new IllegalArgumentException("Resource already exists");

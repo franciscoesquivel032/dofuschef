@@ -6,6 +6,7 @@ import com.dofusdude.client.Configuration;
 import com.dofusdude.client.api.ResourcesApi;
 import com.dofusdude.client.model.ListItem;
 import com.franciscoesquivel.dofuschef.Resources.Resource;
+import com.franciscoesquivel.dofuschef.Resources.ResourceController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
