@@ -6,13 +6,12 @@ import com.dofusdude.client.Configuration;
 import com.dofusdude.client.api.ResourcesApi;
 import com.dofusdude.client.model.ListItem;
 import com.franciscoesquivel.dofuschef.Resources.Resource;
-import com.franciscoesquivel.dofuschef.Resources.ResourceController;
+import com.franciscoesquivel.dofuschef.Resources.ResourceMapper;
+import com.franciscoesquivel.dofuschef.dofusdude.ListItemMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @SpringBootApplication
 public class DofuschefApplication {
@@ -30,8 +29,8 @@ public class DofuschefApplication {
 
 		try{
 			List<ListItem> items = (List<ListItem>) api.getAllItemsResourcesListAsync(language, gameName, "desc", 1, 200, "", new HashSet<String>(), null);
-			Resource r = new Resource();
-			items.stream().map(r::mapListItem).forEach(System.out::println);
+			ListItemMapper<Resource> mapper = new ResourceMapper();
+			items.stream().map(mapper::map).forEach(System.out::println);
 		}catch(ApiException e){
 			System.out.println("Error " + e);
 		}

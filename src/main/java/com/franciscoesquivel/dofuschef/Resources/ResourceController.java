@@ -1,6 +1,5 @@
 package com.franciscoesquivel.dofuschef.Resources;
 
-import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,16 @@ public class ResourceController {
         try {
             this.svc.insert(r);
             return ResponseEntity.status(HttpStatus.CREATED).body(true);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(false);
+        }
+    }
+
+    @PostMapping("/load")
+    public ResponseEntity<Boolean> load() {
+        try {
+            this.svc.load();
+            return ResponseEntity.status(HttpStatus.OK).body(true);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(false);
         }
