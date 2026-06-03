@@ -1,4 +1,4 @@
-package com.franciscoesquivel.dofuschef.Resources;
+package com.franciscoesquivel.dofuschef.resources;
 
 import com.dofusdude.client.ApiException;
 import com.franciscoesquivel.dofuschef.dofusdude.DofusdudeService;

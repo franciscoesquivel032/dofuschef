@@ -1,4 +1,4 @@
-package com.franciscoesquivel.dofuschef.Resources;
+package com.franciscoesquivel.dofuschef.resources;
 import com.franciscoesquivel.dofuschef.ImageUrls;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +11,7 @@ import lombok.*;
 @Builder
 @ToString
 @Entity
+@Table(name = "resources")
 public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

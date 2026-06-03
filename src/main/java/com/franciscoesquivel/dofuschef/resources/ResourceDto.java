@@ -1,4 +1,4 @@
-package com.franciscoesquivel.dofuschef.Resources;
+package com.franciscoesquivel.dofuschef.resources;
 
 import com.franciscoesquivel.dofuschef.ImageUrls;
 

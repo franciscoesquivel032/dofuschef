@@ -1,4 +1,4 @@
-package com.franciscoesquivel.dofuschef.Resources;
+package com.franciscoesquivel.dofuschef.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

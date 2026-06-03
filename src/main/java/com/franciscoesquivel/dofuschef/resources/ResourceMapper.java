@@ -1,4 +1,4 @@
-package com.franciscoesquivel.dofuschef.Resources;
+package com.franciscoesquivel.dofuschef.resources;
 
 import com.dofusdude.client.model.Images;
 import com.dofusdude.client.model.ListItem;

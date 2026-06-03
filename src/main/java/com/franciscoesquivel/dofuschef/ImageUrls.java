@@ -1,9 +1,6 @@
 package com.franciscoesquivel.dofuschef;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -13,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(name = "image_urls")
 public class ImageUrls {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
