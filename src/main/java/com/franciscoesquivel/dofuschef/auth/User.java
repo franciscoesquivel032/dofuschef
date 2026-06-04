@@ -10,17 +10,17 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@Builder
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @EqualsAndHashCode.Include
-    @NonNull
-    @Length(min = 6, max = 20)
+    @Length(min = 5, max = 20)
     @Column(unique = true)
     private String username;
-    @Length(min = 6, max = 20)
+    @Length(min = 6)
     private String password;
     @EqualsAndHashCode.Include
     @Email
