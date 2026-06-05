@@ -21,9 +21,11 @@ public class Resource {
     @EqualsAndHashCode.Include
     private int ankamaId;
     private String name;
+    @Column(length = 20000)
     private String description;
     private int level;
     private int pods;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_urls_id")
     private ImageUrls images;
 }
