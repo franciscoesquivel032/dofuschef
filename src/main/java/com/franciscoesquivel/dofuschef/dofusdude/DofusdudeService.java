@@ -3,6 +3,7 @@ package com.franciscoesquivel.dofuschef.dofusdude;
 import com.dofusdude.client.ApiException;
 import com.dofusdude.client.api.ResourcesApi;
 import com.dofusdude.client.model.ListItem;
+import com.dofusdude.client.model.ListItems;
 import com.franciscoesquivel.dofuschef.resources.Resource;
 import com.franciscoesquivel.dofuschef.resources.ResourceMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,9 +29,11 @@ public class DofusdudeService {
 
     public List<Resource> findAllResources() throws ApiException {
         try {
-            List<ListItem> items = (List<ListItem>) api.getAllItemsResourcesListAsync(
-                    language, gameName, "desc", 1, 200, "", new HashSet<>(), null
+            ListItems response = api.getAllItemsResourcesList(
+                    language, gameName, "desc", 1, 200, "", new HashSet<>()
             );
+            if(response == null || response.getItems() == null) throw new ApiException();
+            List<ListItem> items = response.getItems();
             ListItemMapper<Resource> mapper = new ResourceMapper();
             return items.stream().map(mapper::map).toList();
         } catch (ApiException | ClassCastException e) {
