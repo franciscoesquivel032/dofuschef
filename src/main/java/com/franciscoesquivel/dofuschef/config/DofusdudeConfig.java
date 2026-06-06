@@ -1,6 +1,7 @@
 package com.franciscoesquivel.dofuschef.config;
 
 import com.dofusdude.client.ApiClient;
+import com.dofusdude.client.api.EquipmentApi;
 import com.dofusdude.client.api.ResourcesApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +21,11 @@ public class DofusdudeConfig {
     }
 
     @Bean
-    public ResourcesApi resourcesApi(ApiClient client) {
-        return new ResourcesApi(client);
+    public ApiContainer apiContainer(ApiClient client) {
+        ApiContainer apiContainer = new ApiContainer();
+        apiContainer.register(ResourcesApi.class, new ResourcesApi(client));
+        apiContainer.register(EquipmentApi.class, new EquipmentApi(client));
+
+        return apiContainer;
     }
 }

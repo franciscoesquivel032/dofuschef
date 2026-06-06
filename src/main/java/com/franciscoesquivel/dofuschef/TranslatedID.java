@@ -14,11 +14,12 @@ import java.util.Objects;
 @AllArgsConstructor
 @ToString
 @Entity
+@NoArgsConstructor
 public class TranslatedID {
-    @NotNull
     @Id
     @Generated
     private int id;
+    @NonNull
     private String name;
 
     @Override
