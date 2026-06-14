@@ -1,6 +1,6 @@
 package com.franciscoesquivel.dofuschef.security;
 
-import com.franciscoesquivel.dofuschef.auth.CustomUserDetailsService;
+import com.franciscoesquivel.dofuschef.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
