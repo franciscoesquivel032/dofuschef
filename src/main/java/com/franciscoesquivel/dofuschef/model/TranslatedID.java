@@ -1,6 +1,8 @@
 package com.franciscoesquivel.dofuschef.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -16,7 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor
 public class TranslatedID {
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NonNull
     private String name;

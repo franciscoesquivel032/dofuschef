@@ -4,7 +4,6 @@ import com.dofusdude.client.model.Images;
 import com.dofusdude.client.model.ListItem;
 import com.franciscoesquivel.dofuschef.model.Equipment;
 import com.franciscoesquivel.dofuschef.model.ImageUrls;
-import com.franciscoesquivel.dofuschef.model.Recipe;
 import com.franciscoesquivel.dofuschef.model.TranslatedID;
 
 public class EquipmentMapper implements ListItemMapper<Equipment> {
@@ -13,7 +12,7 @@ public class EquipmentMapper implements ListItemMapper<Equipment> {
         if (li == null) throw new IllegalArgumentException();
         if (li.getAnkamaId() == null) throw new IllegalArgumentException();
         Images imgs = li.getImageUrls() != null ? li.getImageUrls() : new Images();
-        String typeName = li.getType().getName() != null ? li.getType().getName() : "";
+        String typeName = (li.getType() != null && li.getType().getName() != null) ? li.getType().getName() : "";
         Equipment equipment = new Equipment();
         equipment.setAnkamaId(li.getAnkamaId());
         equipment.setName(li.getName());
@@ -26,7 +25,6 @@ public class EquipmentMapper implements ListItemMapper<Equipment> {
         equipment.setImages(imageUrls);
         equipment.setLevel(li.getLevel() != null ? li.getLevel() : 0);
         equipment.setDescription(li.getDescription());
-        equipment.setRecipe((Recipe) li.getRecipe());
         equipment.setWeapon(Boolean.TRUE.equals(li.getIsWeapon()));
         return equipment;
     }

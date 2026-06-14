@@ -26,7 +26,7 @@ public class DofusdudeService {
     private static final String GAME_NAME = "dofus3";
     private static final String SORT_ORDER = "desc";
     private static final int MIN_LVL = 1;
-    private static final int MAX_LVL = 200;
+    private static final int MAX_LVL = 50;
     private static final String ENCODING = "";
     private static final Set<String> FILTER_TYPE = Collections.emptySet();
 
@@ -46,7 +46,7 @@ public class DofusdudeService {
             List<ListItem> items = response.getItems();
             ListItemMapper<Resource> mapper = new ResourceMapper();
             return items.stream().map(mapper::map).toList();
-        } catch (ApiException | ClassCastException e) {
+        } catch (ApiException e) {
             log.error("Error retrieving resources from Dofusdude API : {}", e.getMessage());
             throw new ApiException("Could not fetch resources from external API" + e);
         }
@@ -60,7 +60,7 @@ public class DofusdudeService {
             List<ListItem> items = response.getItems();
             ListItemMapper<Equipment> mapper = new EquipmentMapper();
             return items.stream().map(mapper::map).toList();
-        } catch (ApiException | ClassCastException e) {
+        } catch (ApiException e) {
             log.error("Error retrieving equipments from Dofusdude API : {}", e.getMessage());
             throw new ApiException("Could not fetch equipments from external API" + e);
         }

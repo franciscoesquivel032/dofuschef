@@ -12,15 +12,16 @@ import lombok.*;
 @Builder
 public class Equipment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
     @EqualsAndHashCode.Include
     private int ankamaId;
     private String name;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "type_id")
     private TranslatedID type;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private ImageUrls images;
     private int level;
     @Column(length = 10000)
