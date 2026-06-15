@@ -26,7 +26,7 @@ public class Equipment {
     private int level;
     @Column(length = 10000)
     private String description;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
     private boolean isWeapon;

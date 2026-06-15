@@ -26,6 +26,7 @@ public class EquipmentMapper implements ListItemMapper<Equipment> {
         equipment.setLevel(li.getLevel() != null ? li.getLevel() : 0);
         equipment.setDescription(li.getDescription());
         equipment.setWeapon(Boolean.TRUE.equals(li.getIsWeapon()));
+        equipment.setRecipe(buildRecipe(li));
         return equipment;
     }
 }

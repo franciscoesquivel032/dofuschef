@@ -27,4 +27,7 @@ public class Resource {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_urls_id")
     private ImageUrls images;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
 }

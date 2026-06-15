@@ -1,5 +1,4 @@
 package com.franciscoesquivel.dofuschef.mapper;
-
 import com.dofusdude.client.model.Images;
 import com.dofusdude.client.model.ListItem;
 import com.franciscoesquivel.dofuschef.model.ImageUrls;
@@ -17,12 +16,13 @@ public class ResourceMapper implements ListItemMapper<Resource> {
         resource.setDescription(li.getDescription());
         resource.setLevel(li.getLevel() != null ? li.getLevel() : 0);
         resource.setPods(li.getPods() != null ? li.getPods() : 0);
-        ImageUrls imageUrls = new ImageUrls();
-        imageUrls.setIcon(imgs.getIcon());
-        imageUrls.setSd(imgs.getHd());
-        imageUrls.setHq(imgs.getHq());
-        imageUrls.setHd(imgs.getHd());
-        resource.setImages(imageUrls);
+        resource.setImages(ImageUrls.builder()
+                .icon(imgs.getIcon())
+                .hd(imgs.getHd())
+                .hq(imgs.getHq())
+                .sd(imgs.getSd())
+                .build());
+        resource.setRecipe(buildRecipe(li));
         return resource;
     }
 }
