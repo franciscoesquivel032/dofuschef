@@ -1,55 +1,47 @@
 package com.franciscoesquivel.dofuschef.controller;
 
-import com.franciscoesquivel.dofuschef.model.Resource;
+import com.franciscoesquivel.dofuschef.dto.ResourceRequest;
+import com.franciscoesquivel.dofuschef.dto.ResourceResponse;
 import com.franciscoesquivel.dofuschef.service.ResourceService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 @RestController
-@RequestMapping("/resources")
+@RequestMapping("/api/v1/resources")
+@RequiredArgsConstructor
 public class ResourceController {
-    @Autowired ResourceService svc;
+
+    private final ResourceService svc;
 
     @PostMapping
-    public ResponseEntity<Boolean> insert(@RequestBody Resource r) {
-        try {
-            this.svc.insert(r);
-            return ResponseEntity.status(HttpStatus.CREATED).body(true);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(false);
-        }
+    public ResponseEntity<ResourceResponse> insert(@Valid @RequestBody ResourceRequest request) {
+        ResourceResponse response = svc.insert(request);
+        URI location = URI.create("/api/v1/resources/" + response.ankamaId());
+        return ResponseEntity.created(location).body(response);
     }
 
     @PostMapping("/load")
     public ResponseEntity<Boolean> load() {
-        try {
-            this.svc.load();
-            return ResponseEntity.status(HttpStatus.OK).body(true);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(false);
-        }
+        return ResponseEntity.ok(svc.load());
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<Resource> findById(@PathVariable int id) {
-        return ResponseEntity.of(this.svc.findById(id));
+    public ResponseEntity<ResourceResponse> findById(@PathVariable int id) {
+        return ResponseEntity.ok(svc.findById(id));
     }
 
     @GetMapping("/ankid/{id}")
-    public ResponseEntity<Resource> findByAnkId(@PathVariable int id) {
-        return ResponseEntity.of(this.svc.findByAnkamaId(id));
+    public ResponseEntity<ResourceResponse> findByAnkId(@PathVariable int id) {
+        return ResponseEntity.ok(svc.findByAnkamaId(id));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Boolean> delete(int id) {
-        try {
-            this.svc.delete(id);
-            return ResponseEntity.ok().body(true);
-        } catch (Exception e) {
-          return ResponseEntity.badRequest().body(false);
-        }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable int id) {
+        svc.delete(id);
+        return ResponseEntity.noContent().build();
     }
-
 }
