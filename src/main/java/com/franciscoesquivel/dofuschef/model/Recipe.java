@@ -1,31 +1,28 @@
 package com.franciscoesquivel.dofuschef.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
+@Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
 @ToString
 @Entity
 public class Recipe {
     @NotNull
-    @EqualsAndHashCode.Include
-    private int itemAnkamaId;
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
-    private String itemSubtype;
-    private int quantity;
+    @ElementCollection
+    @CollectionTable(name = "recipe_lines", joinColumns = @JoinColumn(name = "recipe_id"))
+    private Set<RecipeLine> lines;
 
     @Override
     public final boolean equals(Object o) {
