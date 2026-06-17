@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/api/v1/resources")
+@RequestMapping("/resources")
 @RequiredArgsConstructor
 public class ResourceController {
 
@@ -34,7 +34,7 @@ public class ResourceController {
         return ResponseEntity.ok(svc.findById(id));
     }
 
-    @GetMapping("/ankid/{id}")
+    @GetMapping("/ankamaid/{id}")
     public ResponseEntity<ResourceResponse> findByAnkId(@PathVariable int id) {
         return ResponseEntity.ok(svc.findByAnkamaId(id));
     }
