@@ -1,21 +1,30 @@
 package com.franciscoesquivel.dofuschef.controller;
 
+import com.franciscoesquivel.dofuschef.dto.EquipmentResponse;
 import com.franciscoesquivel.dofuschef.service.EquipmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/equipments")
+@RequestMapping("/equipments")
 @RequiredArgsConstructor
 public class EquipmentController {
 
-    private final EquipmentService equipmentService;
+    private final EquipmentService svc;
 
     @PostMapping("/load")
     public ResponseEntity<Boolean> load() {
-        return ResponseEntity.ok(equipmentService.load());
+        return ResponseEntity.ok(svc.load());
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<EquipmentResponse> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(svc.findById(id));
+    }
+
+    @GetMapping("/ankamaid/{id}")
+    public ResponseEntity<EquipmentResponse> findByAnkamaId(@PathVariable int id) {
+        return ResponseEntity.ok(svc.findByAnkamaId(id));
     }
 }
