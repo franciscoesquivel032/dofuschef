@@ -19,7 +19,7 @@ public interface ListItemMapper<T> {
                 ? Collections.emptySet()
                 : liRecipe.stream()
                 .filter(r -> r.getItemAnkamaId() != null && r.getQuantity() != null)
-                .map(r -> new RecipeLine(r.getItemAnkamaId(), r.getQuantity()))
+                .map(r -> new RecipeLine(r.getQuantity(), r.getItemAnkamaId()))
                 .collect(Collectors.toUnmodifiableSet());
         return Recipe.builder().lines(lines).build();
     }
