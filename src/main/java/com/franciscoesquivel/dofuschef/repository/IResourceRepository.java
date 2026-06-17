@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface IResourceRepository extends CrudRepository<Resource, Integer> {
+public interface IResourceRepository extends CrudRepository<Resource, Long> {
     Optional<Resource> findByAnkamaId(int id);
 }

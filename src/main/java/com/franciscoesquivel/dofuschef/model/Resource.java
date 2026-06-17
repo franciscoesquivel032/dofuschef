@@ -1,33 +1,19 @@
 package com.franciscoesquivel.dofuschef.model;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
 
-@Data
-@AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@NoArgsConstructor
-@Builder
-@ToString
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 @Entity
 @Table(name = "resources")
-public class Resource {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private int id;
-    @NotNull
-    @EqualsAndHashCode.Include
-    private int ankamaId;
-    private String name;
-    @Column(length = 20000)
-    private String description;
-    private int level;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+public class Resource extends AnkamaItem {
     private int pods;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "image_urls_id")
-    private ImageUrls images;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
 }

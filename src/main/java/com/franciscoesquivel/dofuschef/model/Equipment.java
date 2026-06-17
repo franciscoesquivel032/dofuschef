@@ -2,32 +2,22 @@ package com.franciscoesquivel.dofuschef.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table
-@Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@Builder
-public class Equipment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private Long id;
-    @EqualsAndHashCode.Include
-    private int ankamaId;
-    private String name;
+@AllArgsConstructor
+@SuperBuilder
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+public class Equipment extends AnkamaItem {
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "type_id")
     private TranslatedID type;
-    @OneToOne(cascade = CascadeType.ALL)
-    private ImageUrls images;
-    private int level;
-    @Column(length = 10000)
-    private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
+
     private boolean isWeapon;
 }
