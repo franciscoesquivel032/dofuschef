@@ -30,7 +30,7 @@ public class ResourceController {
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<ResourceResponse> findById(@PathVariable int id) {
+    public ResponseEntity<ResourceResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(svc.findById(id));
     }
 
@@ -40,7 +40,7 @@ public class ResourceController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable int id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         svc.delete(id);
         return ResponseEntity.noContent().build();
     }

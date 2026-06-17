@@ -48,14 +48,14 @@ public class ResourceService {
     }
 
     @Transactional
-    public void delete(int id) {
+    public void delete(Long id) {
         if (id < 0) throw new IllegalArgumentException("ID cannot be negative");
         if (!dao.existsById(id))
             throw new NotFoundException("Resource with id " + id + " not found");
         dao.deleteById(id);
     }
 
-    public ResourceResponse findById(int id) {
+    public ResourceResponse findById(Long id) {
         return dao.findById(id)
                 .map(mapper::toResponse)
                 .orElseThrow(() -> new NotFoundException("Resource with id " + id + " not found"));
