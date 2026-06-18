@@ -8,8 +8,9 @@ import com.franciscoesquivel.dofuschef.repository.IEquipmentRepository;
 import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -46,4 +47,14 @@ public class EquipmentService {
                 .map(mapper::toResponse)
                 .orElseThrow(() -> new NotFoundException("Equipment with id " + id + " not found"));
     }
+
+    public Page<EquipmentResponse> findAll(Pageable p) {
+        Page<Equipment> result = dao.findAll(p);
+        return result.map(mapper::toResponse);
+    }
+
+    public Page<EquipmentResponse> findByNameLike(String name, Pageable pageable) {
+        return dao.findByNameLike(name, pageable).map(mapper::toResponse);
+    }
+
 }
