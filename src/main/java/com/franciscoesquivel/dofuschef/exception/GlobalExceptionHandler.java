@@ -24,6 +24,27 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleResourceNotFound(ResourceNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+            new ErrorResponse(404, "Not Found", ex.getMessage(), LocalDateTime.now())
+        );
+    }
+
+    @ExceptionHandler(ItemNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleItemNotFound(ItemNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+            new ErrorResponse(404, "Not Found", ex.getMessage(), LocalDateTime.now())
+        );
+    }
+
+    @ExceptionHandler(RecipeNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleRecipeNotFound(RecipeNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(
+            new ErrorResponse(422, "Unprocessable Entity", ex.getMessage(), LocalDateTime.now())
+        );
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(Exception ex) {
         log.error("Unhandled exception", ex);
