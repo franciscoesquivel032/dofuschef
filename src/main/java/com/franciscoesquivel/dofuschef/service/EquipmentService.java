@@ -1,6 +1,7 @@
 package com.franciscoesquivel.dofuschef.service;
 
 import com.dofusdude.client.ApiException;
+import com.franciscoesquivel.dofuschef.dto.EquipmentFilter;
 import com.franciscoesquivel.dofuschef.dto.EquipmentResponse;
 import com.franciscoesquivel.dofuschef.mapper.EquipmentEntityMapper;
 import com.franciscoesquivel.dofuschef.model.Equipment;
@@ -8,8 +9,9 @@ import com.franciscoesquivel.dofuschef.repository.IEquipmentRepository;
 import jakarta.ws.rs.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -46,4 +48,16 @@ public class EquipmentService {
                 .map(mapper::toResponse)
                 .orElseThrow(() -> new NotFoundException("Equipment with id " + id + " not found"));
     }
+
+    public Page<EquipmentResponse> findAll(EquipmentFilter filter, Pageable pageable) {
+        Page<Equipment> result = dao.findByFilters(
+                filter.name(),
+                filter.type(),
+                filter.isWeapon(),
+                filter.minLevel(),
+                filter.maxLevel(),
+                pageable);
+        return result.map(mapper::toResponse);
+    }
+
 }

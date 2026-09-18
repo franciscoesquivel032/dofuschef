@@ -1,6 +1,7 @@
 package com.franciscoesquivel.dofuschef.service;
 
 import com.dofusdude.client.ApiException;
+import com.franciscoesquivel.dofuschef.dto.ResourceFilter;
 import com.franciscoesquivel.dofuschef.dto.ResourceRequest;
 import com.franciscoesquivel.dofuschef.dto.ResourceResponse;
 import com.franciscoesquivel.dofuschef.mapper.ResourceEntityMapper;
@@ -9,6 +10,8 @@ import com.franciscoesquivel.dofuschef.repository.IResourceRepository;
 import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,5 +68,9 @@ public class ResourceService {
         return dao.findByAnkamaId(id)
                 .map(mapper::toResponse)
                 .orElseThrow(() -> new NotFoundException("Resource with ankamaId " + id + " not found"));
+    }
+
+    public Page<ResourceResponse> findAll(ResourceFilter filter, Pageable pageable) {
+        return dao.findByFilters(filter.name(), pageable).map(mapper::toResponse);
     }
 }
