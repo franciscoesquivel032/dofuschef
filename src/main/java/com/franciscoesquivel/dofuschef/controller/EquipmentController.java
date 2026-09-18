@@ -1,5 +1,6 @@
 package com.franciscoesquivel.dofuschef.controller;
 
+import com.franciscoesquivel.dofuschef.dto.EquipmentFilter;
 import com.franciscoesquivel.dofuschef.dto.EquipmentResponse;
 import com.franciscoesquivel.dofuschef.service.EquipmentService;
 import lombok.RequiredArgsConstructor;
@@ -31,12 +32,7 @@ public class EquipmentController {
     }
 
     @GetMapping()
-    public ResponseEntity<Page<EquipmentResponse>> findAll(Pageable p) {
-        return ResponseEntity.ok(this.svc.findAll(p));
-    }
-
-    @GetMapping("/name/{name}")
-    public ResponseEntity<Page<EquipmentResponse>> findByName(String name, Pageable p) {
-        return ResponseEntity.ok(this.svc.findByNameLike(name, p));
+    public ResponseEntity<Page<EquipmentResponse>> findAll(@ModelAttribute EquipmentFilter filter, Pageable p) {
+        return ResponseEntity.ok(this.svc.findAll(filter, p));
     }
 }

@@ -1,10 +1,13 @@
 package com.franciscoesquivel.dofuschef.controller;
 
+import com.franciscoesquivel.dofuschef.dto.ResourceFilter;
 import com.franciscoesquivel.dofuschef.dto.ResourceRequest;
 import com.franciscoesquivel.dofuschef.dto.ResourceResponse;
 import com.franciscoesquivel.dofuschef.service.ResourceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +40,11 @@ public class ResourceController {
     @GetMapping("/ankamaid/{id}")
     public ResponseEntity<ResourceResponse> findByAnkId(@PathVariable int id) {
         return ResponseEntity.ok(svc.findByAnkamaId(id));
+    }
+
+    @GetMapping()
+    public ResponseEntity<Page<ResourceResponse>> findAll(@ModelAttribute ResourceFilter filter, Pageable p) {
+        return ResponseEntity.ok(svc.findAll(filter, p));
     }
 
     @DeleteMapping("/{id}")

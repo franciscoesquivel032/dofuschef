@@ -1,6 +1,7 @@
 package com.franciscoesquivel.dofuschef.service;
 
 import com.dofusdude.client.ApiException;
+import com.franciscoesquivel.dofuschef.dto.EquipmentFilter;
 import com.franciscoesquivel.dofuschef.dto.EquipmentResponse;
 import com.franciscoesquivel.dofuschef.mapper.EquipmentEntityMapper;
 import com.franciscoesquivel.dofuschef.model.Equipment;
@@ -48,13 +49,15 @@ public class EquipmentService {
                 .orElseThrow(() -> new NotFoundException("Equipment with id " + id + " not found"));
     }
 
-    public Page<EquipmentResponse> findAll(Pageable p) {
-        Page<Equipment> result = dao.findAll(p);
+    public Page<EquipmentResponse> findAll(EquipmentFilter filter, Pageable pageable) {
+        Page<Equipment> result = dao.findByFilters(
+                filter.name(),
+                filter.type(),
+                filter.isWeapon(),
+                filter.minLevel(),
+                filter.maxLevel(),
+                pageable);
         return result.map(mapper::toResponse);
-    }
-
-    public Page<EquipmentResponse> findByNameLike(String name, Pageable pageable) {
-        return dao.findByNameLike(name, pageable).map(mapper::toResponse);
     }
 
 }
